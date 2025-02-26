@@ -1,4 +1,4 @@
-# ✈️ Aircraft Trajectory Prediction using K-Means & BiLSTM
+a# ✈️ Aircraft Trajectory Prediction using K-Means & BiLSTM
 
 ## 📌 Project Overview
 This project proposes a **hybrid learning approach** using **trajectory clustering (K-Means)** and **Bidirectional Long Short-Term Memory (BiLSTM)** to predict aircraft trajectories, aiming to enhance light predictability, reduce congestion and improve safety. As a **proof of concept**, it demonstrates the potential for acurately predicting other flight parameters.
@@ -39,23 +39,38 @@ This project proposes a **hybrid learning approach** using **trajectory clusteri
 - Features used: **Time, Latitude, Longitude, Altitude, Speed, Heading**.
 
 ### **2️⃣ Preprocessing**
-- **Data Cleansing:** Removing outliers & normalizing values.  
-- **Feature Engineering:** Selecting key parameters.  
-- **Temporal Alignment:** Resampling for consistency across flights.  
+**1. Data Cleansing and Visualization:** 
+After inaccurate flight data are removed, the remaining data had their sampling rate standardized to ensure a dynamic and continuous flight data. Finished flight data is visualized using the open-source GIS software qGis.
+
+**2. Temporal Alignment and Resampling:** 
+To make sure all flight data has identical amount of data samples, their timestep was aligned and resampled with interpolation and decimation. Eventually, the features are scaled and feature vectors are created.
+
+**3. Dimensionality Reduction:**
+t-SNE Dimensionality Reduction will reduce the number of samples into two dimensions for easier visualization and interpretation of each flight data. Instead of analyzing each individual data point separately, t-SNE condenses them into a visual map that preserves their essential patterns and characteristics.  
 
 ### **3️⃣ Clustering (K-Means)**
-- Used **Elbow Method** to determine optimal clusters.  
-- Segmented trajectories to enhance model training.
+**1. Determining K Value**
+The optimal K value was determined using the elbow method, silhouette score, and a heuristic approach, resulting in K = 3.
+
+**2. Clustering Result & Performance**
+(foto disini)
+The clustering performance was calculated by measuring how tightly the data points within a cluster are packed together. A lower intra-cluster variance indicates a well-defined cluster.
+(foto lagi)
 
 ### **4️⃣ Deep Learning Model (BiLSTM)**
-- **Why BiLSTM?** Captures both past & future dependencies in time-series data.  
+**1. BiLSTM Modeling**
+Six BiLSTM models will be trained, one per cluster, alongside a model using unclustered data to assess clustering's impact. Each model follows an 80/20 train-test split, with one flight reserved for validation. In order to prevent the model from over-fitting during training, the training set was randomized.
+Input layers include. Hyperparameter tuning is done individually for each cluster model.
 - **Architecture:**  
-  - Input: Latitude, Longitude, Speed, Time  
-  - Hidden Layers: 2 BiLSTM layers + Dropout  
-  - Output: Predicted flight position  
+  - Input: time, latitude, longitude, altitude, groundspeed, and heading  
+  - Hidden Layers: 128 layers + dropout  
+  - Output: Predicted flight position
 - **Training:** RMSE & MAE used for loss function.
 
-### **5️⃣ Evaluation Metrics**
+### **5️⃣ Prediction Results**
+
+
+### **56️⃣ Evaluation Metrics**
 | Model  | RMSE (Latitude) | RMSE (Longitude) |
 |--------|---------------|----------------|
 | No Clustering | 0.032 | 0.045 |
