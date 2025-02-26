@@ -1,4 +1,4 @@
-a# ✈️ Aircraft Trajectory Prediction using K-Means & BiLSTM
+# ✈️ Aircraft Trajectory Prediction using K-Means & BiLSTM
 
 ## 📌 Project Overview
 This project proposes a **hybrid learning approach** using **trajectory clustering (K-Means)** and **Bidirectional Long Short-Term Memory (BiLSTM)** to predict aircraft trajectories, aiming to enhance light predictability, reduce congestion and improve safety. As a **proof of concept**, it demonstrates the potential for acurately predicting other flight parameters.
@@ -39,29 +39,25 @@ This project proposes a **hybrid learning approach** using **trajectory clusteri
 - Features used: **Time, Latitude, Longitude, Altitude, Speed, Heading**.
 
 ### **2️⃣ Preprocessing**
-**1. Data Cleansing and Visualization:** 
-After inaccurate flight data are removed, the remaining data had their sampling rate standardized to ensure a dynamic and continuous flight data. Finished flight data is visualized using the open-source GIS software qGis.
-
-**2. Temporal Alignment and Resampling:** 
-To make sure all flight data has identical amount of data samples, their timestep was aligned and resampled with interpolation and decimation. Eventually, the features are scaled and feature vectors are created.
-
-**3. Dimensionality Reduction:**
-t-SNE Dimensionality Reduction will reduce the number of samples into two dimensions for easier visualization and interpretation of each flight data. Instead of analyzing each individual data point separately, t-SNE condenses them into a visual map that preserves their essential patterns and characteristics.  
+1. **Data Cleansing and Visualization**
+   - After inaccurate flight data are removed, the remaining data had their sampling rate standardized to ensure a dynamic and continuous flight data. Finished flight data is visualized using the open-source GIS software qGis.
+2. **Temporal Alignment and Resampling**
+   - To make sure all flight data has identical amount of data samples, their timestep was aligned and resampled with interpolation and decimation. Eventually, the features are scaled and feature vectors are created.
+3. **Dimensionality Reduction**
+   - To make sure all flight data has identical amount of data samples, their timestep was aligned and resampled with interpolation and decimation. Eventually, the features are scaled and feature vectors are created.
 
 ### **3️⃣ Clustering (K-Means)**
-**1. Determining K Value**
-The optimal K value was determined using the elbow method, silhouette score, and a heuristic approach, resulting in K = 3.
-
-**2. Clustering Result & Performance**
-(foto disini)
-The clustering performance was calculated by measuring how tightly the data points within a cluster are packed together. A lower intra-cluster variance indicates a well-defined cluster.
-(foto lagi)
+1. **Determining K Value**
+   - The optimal K value was determined using ta combination of the elbow method, silhouette score, and a heuristic approach, resulting in K = 3.
+2. **Clustering Result & Performance**
+   - The clustering performance was calculated by measuring how tightly the data points within a cluster are packed together. A lower intra-cluster variance indicates a well-defined cluster.
 
 ### **4️⃣ Deep Learning Model (BiLSTM)**
-**1. BiLSTM Modeling**
-Six BiLSTM models will be trained, one per cluster, alongside a model using unclustered data to assess clustering's impact. Each model follows an 80/20 train-test split, with one flight reserved for validation. In order to prevent the model from over-fitting during training, the training set was randomized.
-Input layers include. Hyperparameter tuning is done individually for each cluster model.
-- **Architecture:**  
+  **BiLSTM Modeling**
+  
+Six BiLSTM models will be trained, one per cluster, alongside a model using unclustered data to assess clustering's impact. Each model follows an 80/20 train-test split, with one flight reserved for validation. In order to prevent the model from over-fitting during training, the training set was randomized. Hyperparameter tuning is done individually for each cluster model.
+
+  **Architecture:**  
   - Input: time, latitude, longitude, altitude, groundspeed, and heading  
   - Hidden Layers: 128 layers + dropout  
   - Output: Predicted flight position
@@ -80,4 +76,4 @@ Input layers include. Hyperparameter tuning is done individually for each cluste
 
 📜 **Full Report:** [Here](https://drive.google.com/file/d/1nF59ecE_myQGnDGz8YoO0U8VUmj-UlSf/view?usp=sharing) [and here!](https://drive.google.com/file/d/1Bd1hm8-zfEX9zlucOQ9zgSEgrZIrxmee/view?usp=sharing)
 🎤 **Presentation Slides:** [Here!](https://drive.google.com/file/d/1lWnlXLm6o-WbvtOeQkxjwZq7iYxnnYwz/view?usp=drive_link)  
-📝 **Notebooks & Code:** Available in this repository.  
+📝 **Notebooks & Code:** Available in the report (SOON in the repository!)  
