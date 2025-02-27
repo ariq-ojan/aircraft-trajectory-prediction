@@ -35,8 +35,12 @@ This project proposes a **hybrid learning approach** using **trajectory clusteri
 
 ### **1️⃣ Data Collection**
 - 3000+ encrypted real flight data all across North America obtained from NASA's **Flight Data Monitoring (FDM)**
-- 159 data of flights from Duluth (DLH) to Minneapolis (MSP) were selected
+- 159 data of flights from Duluth (DLH) to Minneapolis (MSP) were selected   
 - Features used: **Time, Latitude, Longitude, Altitude, Speed, Heading**.
+
+<div align="center">
+  <img src="https://github.com/ariq-ojan/aircraft-trajectory-prediction/blob/main/RAW%20DATA.jpg" width="650">
+</div>
 
 ### **2️⃣ Preprocessing**
 1. **Data Cleansing and Visualization**
@@ -46,11 +50,19 @@ This project proposes a **hybrid learning approach** using **trajectory clusteri
 3. **Dimensionality Reduction**
    - To make sure all flight data has identical amount of data samples, their timestep was aligned and resampled with interpolation and decimation. Eventually, the features are scaled and feature vectors are created.
 
+<div align="center">
+  <img src="https://github.com/ariq-ojan/aircraft-trajectory-prediction/blob/main/t-SNE.jpg">
+</div>
+
 ### **3️⃣ Clustering (K-Means)**
 1. **Determining K Value**
    - The optimal K value was determined using ta combination of the elbow method, silhouette score, and a heuristic approach, resulting in K = 3.
 2. **Clustering Result & Performance**
    - The clustering performance was calculated by measuring how tightly the data points within a cluster are packed together. A lower intra-cluster variance indicates a well-defined cluster.
+  
+<div align="center">
+  <img src="https://github.com/ariq-ojan/aircraft-trajectory-prediction/blob/main/Clustering%20Results.jpg" width="650">
+</div>
 
 ### **4️⃣ Deep Learning Model (BiLSTM)**
   **BiLSTM Modeling**
@@ -63,10 +75,18 @@ Six BiLSTM models will be trained, one per cluster, alongside a model using uncl
   - Output: Predicted flight position
 - **Training:** RMSE & MAE used for loss function.
 
-### **5️⃣ Prediction Results**
+### **Prediction Results**
+
+<div align="center">
+  <img src="https://github.com/ariq-ojan/aircraft-trajectory-prediction/blob/main/PPT_SEMINAR%20TA_13619107.png" width="650">
+</div>
+
+<div align="center">
+  <img src="https://github.com/ariq-ojan/aircraft-trajectory-prediction/blob/main/PPT_SEMINAR%20TA_13619107%20(1).png" width="650">
+</div>
 
 
-### **56️⃣ Evaluation Metrics**
+### **5️⃣ Evaluation Metrics**
 | Model  | RMSE (Latitude) | RMSE (Longitude) |
 |--------|---------------|----------------|
 | No Clustering | 0.032 | 0.045 |
