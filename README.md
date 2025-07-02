@@ -96,4 +96,4 @@ Six BiLSTM models will be trained, one per cluster, alongside a model using uncl
 
 📜 **Full Report:** [Here](https://drive.google.com/file/d/1nF59ecE_myQGnDGz8YoO0U8VUmj-UlSf/view?usp=sharing) [and here!](https://drive.google.com/file/d/1Bd1hm8-zfEX9zlucOQ9zgSEgrZIrxmee/view?usp=sharing)
 🎤 **Presentation Slides:** [Here!](https://drive.google.com/file/d/1lWnlXLm6o-WbvtOeQkxjwZq7iYxnnYwz/view?usp=drive_link)  
-📝 **Notebooks & Code:** Available in the report (SOON in the repository!)  
+📝 **Notebooks & Code:** [BiLSTM Prediction Model](./BiLSTM_model.ipynb) [Clustering](./CLUSTERING.ipynb)
